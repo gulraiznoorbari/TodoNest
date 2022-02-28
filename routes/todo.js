@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const todoModel = require("../models/todo");
 const auth = require("../middleware/permissions");
+const todoValidator = require("../validation/todoValidator");
 
 // @route   GET /api/todo
 // @desc    Test the todo route
@@ -15,6 +16,10 @@ router.get("/test", (req, res) => {
 // @access  Private
 router.post("/new", auth, async (req, res) => {
     try {
+        const { isValid, errors } = todoValidator(req.body);
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
         const newTodo = new todoModel({
             user: req.user._id,
             content: req.body.content,
