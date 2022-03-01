@@ -1,11 +1,8 @@
 import "./main.scss";
+import Layout from "./components/Layout";
 
 function App() {
-    return (
-        <div className="App">
-            <h3>React App Running...</h3>
-        </div>
-    );
+    return <Layout />;
 }
 
 export default App;
