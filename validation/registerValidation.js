@@ -15,7 +15,7 @@ const validateUserInfo = (data) => {
     if (isEmpty(data.email)) {
         errors.email = "Email can not be empty!";
     } else if (!validator.isEmail(data.email)) {
-        errors.email = "Email is invalid, please provide a valid email address";
+        errors.email = "Email is invalid, Please provide a valid email address!";
     }
 
     // validate password:
