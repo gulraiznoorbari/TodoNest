@@ -35,9 +35,9 @@ const globalReducer = (state, action) => {
             return {
                 ...state,
                 user: null,
-                fetchingUser: false,
                 completeTodos: [],
                 incompleteTodos: [],
+                fetchingUser: false,
             };
         default:
             return state;
@@ -55,7 +55,7 @@ export const GlobalProvider = (props) => {
     // action: get current user
     const getCurrentUser = async () => {
         try {
-            const res = axios.get("/api/auth/current");
+            const res = await axios.get("/api/auth/current");
             if (res.data) {
                 const todoRes = await axios.get("/api/todos/current");
                 if (todoRes.data) {
