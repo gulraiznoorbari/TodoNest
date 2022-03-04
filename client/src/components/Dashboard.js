@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import TodoCard from "./TodoCard";
+import NewTodo from "./NewTodo";
 
 const Dashboard = () => {
     const { user, completeTodos, incompleteTodos } = useGlobalContext();
@@ -15,6 +16,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
+            <NewTodo />
             <div className="todos">
                 <h1 className="todos__title">Incomplete Tasks</h1>
                 {incompleteTodos.map((todo) => {
