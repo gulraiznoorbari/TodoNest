@@ -13,9 +13,12 @@ const Header = () => {
                 </div>
                 <div className="main-header__right">
                     {user ? (
-                        <button className="btn" onClick={logout}>
-                            Logout
-                        </button>
+                        <>
+                            <h3>{user.name}</h3>
+                            <button className="btn" onClick={logout}>
+                                Logout
+                            </button>
+                        </>
                     ) : pathname === "/" ? (
                         <Link to="/register" className="btn">
                             Register

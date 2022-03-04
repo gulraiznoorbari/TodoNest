@@ -60,6 +60,15 @@ textarea {
             opacity: 0.7;
         }
     }
+    &__right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3 {
+            margin-right: 1rem;
+        }
+    }
 }
 
 .btn {
