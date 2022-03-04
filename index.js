@@ -19,14 +19,12 @@ app.get("/api", (req, res) => {
 app.use("/api/auth", auth);
 app.use("/api/todos", todo);
 
-if (process.env.NODE_ENV === "production") {
-    // express middleware setup for deployment:
-    app.use(express.static(path.resolve(__dirname, "./client/build")));
+// express middleware setup for deployment:
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-    });
-}
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 mongoose
     .connect(process.env.DATABASE_URI)
