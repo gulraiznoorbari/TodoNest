@@ -83,7 +83,7 @@ export const GlobalProvider = (props) => {
         }
     };
 
-    // ACTION: add Todo
+    // ACTION: add Task
     const addTodo = (todo) => {
         try {
             dispatch({
@@ -134,6 +134,54 @@ export const GlobalProvider = (props) => {
         }
     };
 
+    // ACTION: remove Task
+    const removeTodo = (todo) => {
+        try {
+            if (todo.complete) {
+                dispatch({
+                    type: "SET_COMPLETE_TODOS",
+                    payload: state.completeTodos.filter((completeTodo) => {
+                        return completeTodo._id !== todo._id;
+                    }),
+                });
+            } else {
+                dispatch({
+                    type: "SET_INCOMPLETE_TODOS",
+                    payload: state.incompleteTodos.filter((incompleteTodo) => {
+                        return incompleteTodo._id !== todo._id;
+                    }),
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // ACTION: edit/update Task
+    const updateTodo = (todo) => {
+        try {
+            if (todo.complete) {
+                const newTodoComplete = state.completeTodos.map((completeTodo) => {
+                    return completeTodo._id !== todo._id ? completeTodo : todo;
+                });
+                dispatch({
+                    type: "SET_COMPLETE_TODOS",
+                    payload: newTodoComplete,
+                });
+            } else {
+                const newTodoIncomplete = state.incompleteTodos.map((incompleteTodo) => {
+                    return incompleteTodo._id !== todo._id ? incompleteTodo : todo;
+                });
+                dispatch({
+                    type: "SET_INCOMPLETE_TODOS",
+                    payload: newTodoIncomplete,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const value = {
         ...state,
         getCurrentUser,
@@ -141,6 +189,8 @@ export const GlobalProvider = (props) => {
         addTodo,
         todoComplete,
         todoInComplete,
+        removeTodo,
+        updateTodo,
     };
 
     return <GlobalContext.Provider value={value}>{props.children}</GlobalContext.Provider>;
