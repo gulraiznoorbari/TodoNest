@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const todoModel = require("../models/todo");
+const todoModel = require("../models/Todo");
 const auth = require("../middleware/permissions");
 const todoValidator = require("../validation/todoValidator");
 const validateTodoInput = require("../validation/todoValidator");
