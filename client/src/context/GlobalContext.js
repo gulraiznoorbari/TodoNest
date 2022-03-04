@@ -52,7 +52,7 @@ export const GlobalProvider = (props) => {
         getCurrentUser();
     }, []);
 
-    // action: get current user
+    // ACTION: get current user
     const getCurrentUser = async () => {
         try {
             const res = await axios.get("/api/auth/current");
@@ -72,7 +72,7 @@ export const GlobalProvider = (props) => {
         }
     };
 
-    // action: logout user
+    // ACTION: logout user
     const logout = async () => {
         try {
             await axios.put("/api/auth/logout");
@@ -83,10 +83,64 @@ export const GlobalProvider = (props) => {
         }
     };
 
+    // ACTION: add Todo
+    const addTodo = (todo) => {
+        try {
+            dispatch({
+                type: "SET_INCOMPLETE_TODOS",
+                payload: [todo, ...state.incompleteTodos],
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // ACTION: mark as complete
+    const todoComplete = (todo) => {
+        try {
+            dispatch({
+                type: "SET_INCOMPLETE_TODOS",
+                payload: state.incompleteTodos.filter((incompleteTodo) => {
+                    return incompleteTodo._id !== todo._id;
+                }),
+            });
+            dispatch({
+                type: "SET_COMPLETE_TODOS",
+                payload: [todo, ...state.completeTodos],
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // ACTION: mark as incomplete
+    const todoInComplete = (todo) => {
+        try {
+            dispatch({
+                type: "SET_COMPLETE_TODOS",
+                payload: state.completeTodos.filter((completeTodo) => {
+                    return completeTodo._id !== todo._id;
+                }),
+            });
+            const newInCompleteTodo = [todo, ...state.incompleteTodos];
+            dispatch({
+                type: "SET_INCOMPLETE_TODOS",
+                payload: newInCompleteTodo.sort((a, b) => {
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                }),
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const value = {
         ...state,
         getCurrentUser,
         logout,
+        addTodo,
+        todoComplete,
+        todoInComplete,
     };
 
     return <GlobalContext.Provider value={value}>{props.children}</GlobalContext.Provider>;

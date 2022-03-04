@@ -1,6 +1,9 @@
+import axios from "axios";
 import { useState, useRef } from "react";
+import { useGlobalContext } from "../context/GlobalContext";
 
 const TodoCard = ({ todo }) => {
+    const { todoComplete, todoInComplete } = useGlobalContext();
     const [content, setContent] = useState(todo.content);
     const [editing, setEditing] = useState(false);
 
@@ -21,9 +24,27 @@ const TodoCard = ({ todo }) => {
         setContent(todo.content);
     };
 
+    const markAsComplete = (e) => {
+        e.preventDefault();
+        axios.put(`/api/todos/${todo._id}/complete`).then((res) => {
+            todoComplete(res.data);
+        });
+    };
+
+    const markAsIncomplete = (e) => {
+        e.preventDefault();
+        axios.put(`/api/todos/${todo._id}/incomplete`).then((res) => {
+            todoInComplete(res.data);
+        });
+    };
+
     return (
         <div className={`todo ${todo.complete ? "todo--complete" : ""}`}>
-            <input type="checkbox" checked={todo.complete} />
+            <input
+                type="checkbox"
+                checked={todo.complete}
+                onChange={!todo.complete ? markAsComplete : markAsIncomplete}
+            />
             <input
                 type="text"
                 ref={input}
