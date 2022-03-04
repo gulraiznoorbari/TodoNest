@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose
-    .connect(process.env.DATABASE_URI)
+    .connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Connected to Database...");
         app.listen(process.env.PORT, "localhost", () => {
