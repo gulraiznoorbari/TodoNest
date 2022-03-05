@@ -20,14 +20,11 @@ app.use("/api/auth", auth);
 app.use("/api/todos", todo);
 
 mongoose
-    .connect(process.env.DATABASE_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+    .connect(process.env.DATABASE_URI, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => {
         console.log("Connected to Database...");
-        const host = "localhost" || "0.0.0.0";
-        app.listen(process.env.PORT, host, () => {
+        const hostname = "localhost" || "0.0.0.0";
+        app.listen(process.env.PORT, hostname, () => {
             console.log("Listening on PORT 8000...");
         });
     })
@@ -37,6 +34,6 @@ if (process.env.NODE_ENV === "production") {
     // express middleware setup for deployment:
     app.use(express.static(path.join(__dirname, "./client/build")));
     app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+        res.sendFile(path.join(__dirname, "client", "build", "index.html"));
     });
 }
