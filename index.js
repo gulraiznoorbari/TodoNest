@@ -24,7 +24,7 @@ mongoose
     .then(() => {
         console.log("Connected to Database...");
         const port = process.env.PORT || 8000;
-        const hostname = "localhost" || "0.0.0.0";
+        const hostname = "localhost";
         app.listen(port, hostname, () => {
             console.log("Listening on PORT 8000...");
         });
