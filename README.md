@@ -4,9 +4,9 @@
 </div>
 <h2> 🖥️ Demo </h2>
 <div align="center">
-  <img height=500px src="./images/register_page.png">
-  <img height=450px src="./images/login_page.png">
-  <img height=450px src="./images/dashboard.png">
+  <img src="./images/register_page.png">
+  <img src="./images/login_page.png">
+  <img src="./images/dashboard.png">
 </div>
 
 ## ⚙️ Functionalities
