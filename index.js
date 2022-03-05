@@ -23,8 +23,9 @@ mongoose
     .connect(process.env.DATABASE_URI, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => {
         console.log("Connected to Database...");
+        const port = process.env.PORT || 8000;
         const hostname = "localhost" || "0.0.0.0";
-        app.listen(process.env.PORT, hostname, () => {
+        app.listen(port, hostname, () => {
             console.log("Listening on PORT 8000...");
         });
     })
