@@ -1,11 +1,15 @@
 <div align="center">
-<h1>TodoNest</h1>
-<img src="./images/register_page.png">
-<img src="./images/login_page.png">
-<img src="./images/dashboard.png">
+  <h1>TodoNest</h1>
+  <h3>A MERN Stack based Todo List App with CRUD Operations, User Authentication & Authorization</h3>
+</div>
+<h2> 🖥️ Demo </h2>
+<div align="center">
+  <img height=500px src="./images/register_page.png">
+  <img height=450px src="./images/login_page.png">
+  <img height=450px src="./images/dashboard.png">
 </div>
 
-## Functionalities
+## ⚙️ Functionalities
 
 -   [x] User Registration & Login
 -   [x] Add New Task
@@ -13,7 +17,7 @@
 -   [x] Delete Task
 -   [x] Mark Task as Complete/Incomplete
 
-## Installation steps
+## ⬇️ Installation steps
 
 Copy & Paste the following commands in your terminal:
 
@@ -24,7 +28,7 @@ npm install-client
 npm run dev
 ```
 
-## Author
+## 👨‍💻 Author
 
 You can get in touch with me on my LinkedIn Profile:
 
